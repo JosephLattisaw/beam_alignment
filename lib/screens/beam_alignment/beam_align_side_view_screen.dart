@@ -9,6 +9,8 @@ class BeamAlignSideViewScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sweepComplete = useState<bool>(false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -21,7 +23,8 @@ class BeamAlignSideViewScreen extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
-                  onPressed: () {},
+                  heroTag: null,
+                  onPressed: () => sweepComplete.value = true,
                   label: Text("Sweep"),
                   backgroundColor: Colors.green,
                 ),
@@ -29,9 +32,12 @@ class BeamAlignSideViewScreen extends HookWidget {
                   width: 100.0,
                 ),
                 FloatingActionButton.extended(
-                  onPressed: () {},
+                  heroTag: null,
+                  onPressed: sweepComplete.value ? () {} : null,
                   label: Text("Center"),
-                  backgroundColor: Colors.green,
+                  backgroundColor:
+                      sweepComplete.value ? Colors.green : Colors.grey,
+                  disabledElevation: 3.0,
                 ),
               ],
             ),

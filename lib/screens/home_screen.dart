@@ -35,6 +35,11 @@ class HomeScreen extends HookWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: Text("Settings"),
+        backgroundColor: Colors.blue.shade900,
+      ),
     );
   }
 }
