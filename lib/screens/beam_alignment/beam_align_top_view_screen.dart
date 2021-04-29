@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:beam_alignment/moc_server.dart';
+import 'package:provider/provider.dart';
 
 class BeamAlignTopViewScreen extends HookWidget {
   BeamAlignTopViewScreen({Key key}) : super(key: key);
@@ -8,6 +10,9 @@ class BeamAlignTopViewScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final server = Provider.of<MocServer>(context, listen: false);
+    final xrayOn = context.select((MocServer m) => m.xrayOn);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -17,9 +22,10 @@ class BeamAlignTopViewScreen extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FloatingActionButton.extended(
-              onPressed: () {},
-              label: Text("Go"),
-              backgroundColor: Colors.green,
+              onPressed: () =>
+                  xrayOn ? server.powerXray(false) : server.powerXray(true),
+              label: Text(xrayOn ? "X-ray ON" : "Go"),
+              backgroundColor: xrayOn ? Colors.red : Colors.green,
             ),
             SizedBox(height: 16),
             Row(
