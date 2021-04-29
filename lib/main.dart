@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Beam Alignment'),
     );
   }
 }
@@ -34,21 +34,20 @@ class MyHomePage extends HookWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("Beam Align Top"),
             ),
-            Text(
-              '${counter.value}',
-              style: Theme.of(context).textTheme.headline4,
+            SizedBox(
+              height: 20.0,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("Beam Align Side"),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => counter.value++,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
