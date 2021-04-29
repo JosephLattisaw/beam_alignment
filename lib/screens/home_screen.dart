@@ -4,6 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:beam_alignment/common/router_utility.dart';
 import 'package:beam_alignment/screens/beam_alignment/beam_align_top_view_screen.dart';
 import 'package:beam_alignment/screens/beam_alignment/beam_alignment_settings.dart';
+import 'package:provider/provider.dart';
+import 'package:beam_alignment/moc_server.dart';
 
 class HomeScreen extends HookWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -12,6 +14,9 @@ class HomeScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final server = Provider.of<MocServer>(context, listen: false);
+    final serverConnected = context.select((MocServer m) => m.serverConnected);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -20,18 +25,33 @@ class HomeScreen extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () => RouterUtility.routerUtility(
-                  context, BeamAlignTopViewScreen()),
-              child: Text("Beam Align Top"),
+            FloatingActionButton.extended(
+              onPressed: () => server.connectToServer(!serverConnected),
+              label: Text(
+                  serverConnected ? "Disconnect from CPU" : "Connect to CPU"),
+              backgroundColor: serverConnected ? Colors.green : null,
             ),
             SizedBox(
               height: 20.0,
             ),
-            ElevatedButton(
-              onPressed: () => RouterUtility.routerUtility(
-                  context, BeamAlignSideViewScreen()),
-              child: Text("Beam Align Side"),
+            FloatingActionButton.extended(
+              onPressed: () => serverConnected
+                  ? RouterUtility.routerUtility(
+                      context, BeamAlignTopViewScreen())
+                  : null,
+              label: Text("Beam Align Top"),
+              backgroundColor: serverConnected ? null : Colors.grey,
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            FloatingActionButton.extended(
+              onPressed: () => serverConnected
+                  ? RouterUtility.routerUtility(
+                      context, BeamAlignSideViewScreen())
+                  : null,
+              label: Text("Beam Align Side"),
+              backgroundColor: serverConnected ? null : Colors.grey,
             ),
           ],
         ),

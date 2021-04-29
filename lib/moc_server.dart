@@ -6,5 +6,11 @@ class MocServer extends ChangeNotifier {
     notifyListeners();
   }
 
+  void connectToServer(bool connect) {
+    serverConnected = connect;
+    notifyListeners();
+  }
+
   bool xrayOn = false;
+  bool serverConnected = false;
 }

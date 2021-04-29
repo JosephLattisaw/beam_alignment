@@ -115,12 +115,6 @@ class HorizontalSpinBoxPage extends StatelessWidget {
                             value: 0,
                             min: 0,
                             max: 2048,
-                            decoration: InputDecoration(
-                              labelText: 'startpxl',
-                              labelStyle: TextStyle(
-                                fontSize: 24,
-                              ),
-                            ),
                           ),
                           padding: const EdgeInsets.all(16),
                         ),
