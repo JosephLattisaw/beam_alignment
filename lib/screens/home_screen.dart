@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:beam_alignment/common/router_utility.dart';
 import 'package:beam_alignment/screens/beam_alignment/beam_align_top_view_screen.dart';
+import 'package:beam_alignment/screens/beam_alignment/beam_alignment_settings.dart';
 
 class HomeScreen extends HookWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -36,7 +37,8 @@ class HomeScreen extends HookWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () =>
+            RouterUtility.routerUtility(context, BeamAlignSettings()),
         label: Text("Settings"),
         backgroundColor: Colors.blue.shade900,
       ),
