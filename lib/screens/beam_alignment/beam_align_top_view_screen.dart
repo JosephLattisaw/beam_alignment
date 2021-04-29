@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class BeamAlignTopScreen extends HookWidget {
-  BeamAlignTopScreen({Key key}) : super(key: key);
+class BeamAlignTopViewScreen extends HookWidget {
+  BeamAlignTopViewScreen({Key key}) : super(key: key);
 
   static const String title = "Beam Alignment - Top View";
 

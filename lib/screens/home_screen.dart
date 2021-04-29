@@ -1,7 +1,8 @@
+import 'package:beam_alignment/screens/beam_alignment/beam_align_side_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:beam_alignment/common/router_utility.dart';
-import 'package:beam_alignment/screens/beam_align_top_screen.dart';
+import 'package:beam_alignment/screens/beam_alignment/beam_align_top_view_screen.dart';
 
 class HomeScreen extends HookWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -19,15 +20,16 @@ class HomeScreen extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () =>
-                  RouterUtility.routerUtility(context, BeamAlignTopScreen()),
+              onPressed: () => RouterUtility.routerUtility(
+                  context, BeamAlignTopViewScreen()),
               child: Text("Beam Align Top"),
             ),
             SizedBox(
               height: 20.0,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => RouterUtility.routerUtility(
+                  context, BeamAlignSideViewScreen()),
               child: Text("Beam Align Side"),
             ),
           ],
